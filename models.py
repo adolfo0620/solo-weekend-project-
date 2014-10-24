@@ -31,14 +31,25 @@ class User:
 		pass
 
 	#create new user in db
-	def create_user(self):
-		conn = sqlite3.connects(defaultdb)
-		c = conn.cusor()
-		statement = "INSERT INTO Users(first_name,last_name,screen_name VALUES(?,?,?);"
-		c.execute(statement,(first_name,last_name,screen_name,))
+	def create_user(self,first_name,last_name,screen_name,credit_score):
+		conn = sqlite3.connect(defaultdb)
+		c = conn.cursor()
+		statement = "INSERT INTO Users(first_name,last_name,screen_name,credit_score) VALUES(?,?,?,?);"
+		c.execute(statement,(first_name,last_name,screen_name,credit_score,))
 		conn.commit()
 		c.close()
 
+	def fetch_user_info(self,screen_name):
+		conn = sqlite3.connect(defaultdb)
+		c = conn.cursor()
+		statement = "SELECT first_name,last_name,credit_score FROM Users WHERE Users.screen_name=(?)"
+		c.execute(statement,(screen_name,))
+		user_info = c.fetchall()[0]
+		self.first_name = user_info[0]
+		self.last_name = user_info[1]
+		self.credit_score = user_info[2]
+		conn.commit()
+		c.close()
 
 	# gets score
 	def get_score(self):

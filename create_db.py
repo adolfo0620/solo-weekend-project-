@@ -1,14 +1,16 @@
 import sqlite3
 
-defautdb = "budget.db"
+defaultdb = "budget.db"
 
 def create_users_table():
-	conn = sqlite3.connect(defautdb)
+	conn = sqlite3.connect(defaultdb)
 	c = conn.cursor()
 	c.execute("DROP TABLE IF EXISTS 'Users';")
 	c.execute(""" CREATE TABLE 'Users'(
 		'id' INTEGER,
-		'user_name' VARCHAR,
+		'screen_name' VARCHAR,
+		'first_name' VARCHAR,
+		'last_name' VARCHAR
 		'email' VARCHAR,
 		'updated_at' Date,
 		'wire_number' VARCHAR,
@@ -18,7 +20,7 @@ def create_users_table():
 	c.close()
 
 def create_incomes_table():
-	conn = sqlite3.connect(defautdb)
+	conn = sqlite3.connect(defaultdb)
 	c = conn.cursor()
 	c.execute("DROP TABLE IF EXISTS 'Incomes';")
 	# might have to change INTEGER
@@ -36,7 +38,7 @@ def create_incomes_table():
 	c.close()
 
 def create_expenses_table():
-	conn = sqlite3.connect(defautdb)
+	conn = sqlite3.connect(defaultdb)
 	c = conn.cursor()
 	c.execute("DROP TABLE IF EXISTS 'Expenses';")
 	# might have to change this to floats
@@ -59,3 +61,16 @@ def create_expenses_table():
 create_users_table()
 create_expenses_table()
 create_incomes_table()
+
+
+# Insert adolfo's user info
+first_name = "adolfo"
+last_name = "reyes"
+screen_name = "adolfo0620"
+credit_score = 780
+conn = sqlite3.connect(defaultdb)
+c = conn.cursor()
+statement = "INSERT INTO Users(first_name,last_name,screen_name,credit_score) VALUES(?,?,?,?);"
+c.execute(statement,(first_name,last_name,screen_name,credit_score,))
+conn.commit()
+c.close()
