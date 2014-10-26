@@ -1,5 +1,8 @@
 import sqlite3
 import datetime
+import plotly.plotly as py
+from plotly.graph_objs import *
+py.sign_in("adolfo0620", "j57a6gvztr")
 
 defaultdb = "budget.db" 
 
@@ -190,6 +193,26 @@ class Budget:
 		checking_bal = self.get_balance_from_bank(bank_name,wire_numC)
 		total = cash_in_hand+saving_bal+checking_bal
 		return total
+
+	def plot_diff(self,Month1,Month2, array_1 ,array_2):
+		months = [Month1,Month2]
+		trace1 = Bar(
+			x=months,
+			y=array_1,
+			name='earn'
+		)
+		trace2 = Bar(
+			x=months,
+			y=array_2,
+			name='lost'
+		)
+		data = Data([trace1, trace2])
+		layout = Layout(
+			barmode='group'
+		)
+		fig = Figure(data=data, layout=layout)
+		plot_url = py.plot(fig, filename='grouped-bar')
+
 
 
 
