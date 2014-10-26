@@ -15,6 +15,7 @@ def create_users_table():
 		'updated_at' Date,
 		'wire_number' VARCHAR,
 		'credit_score' VARCHAR,
+		UNIQUE(screen_name),
 		PRIMARY KEY ('id'))""")
 	conn.commit()
 	c.close()
@@ -29,7 +30,6 @@ def create_incomes_table():
 		'cash_in_hand' INTEGER,
 		'checking_account' VARCHAR,
 		'saving_account' VARCHAR,
-		'monthy_earning' Real,
 		'user_id' INTEGER,
 		PRIMARY KEY ('id'),
 		FOREIGN KEY (user_id) REFERENCES Users(id)
@@ -46,11 +46,10 @@ def create_expenses_table():
 		'id' INTEGER,
 		'credit_card_dues' INTEGER,
 		'car_loan_dues' INTEGER,
-		'mortage_loan_dues' INTEGER,
+		'mortgage_loan_dues' INTEGER,
 		'rent' INTEGER,
 		'student_loan' INTEGER,
 		'business_loan' INTEGER,
-		'taxes' INTEGER,
 		'user_id' INTEGER,
 		PRIMARY KEY ('id'),
 		FOREIGN KEY (user_id) REFERENCES Users(id))""")
@@ -72,5 +71,30 @@ conn = sqlite3.connect(defaultdb)
 c = conn.cursor()
 statement = "INSERT INTO Users(first_name,last_name,screen_name,credit_score) VALUES(?,?,?,?);"
 c.execute(statement,(first_name,last_name,screen_name,credit_score,))
+conn.commit()
+c.close()
+
+
+cash_in_hand = 50
+checking_account = "5456"
+saving_account = "6566"
+user_id = 1
+conn = sqlite3.connect(defaultdb)
+c = conn.cursor()
+statement = "INSERT INTO Incomes(cash_in_hand,checking_account,saving_account,user_id) VALUES(?,?,?,?);"
+c.execute(statement,(cash_in_hand,checking_account,saving_account,user_id,))
+conn.commit()
+c.close()
+
+credit_card_dues = 50
+car_loan_dues = 1000
+mortgage_loan_dues = 0
+rent = 500
+student_loan = 1000
+business_loan = 0
+conn = sqlite3.connect(defaultdb)
+c = conn.cursor()
+statement = "INSERT INTO Expenses(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan,user_id) VALUES(?,?,?,?,?,?,?);"
+c.execute(statement,(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan,user_id))
 conn.commit()
 c.close()

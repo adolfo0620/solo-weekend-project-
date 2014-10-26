@@ -18,7 +18,7 @@ def returning_user_screen():
 
 def main_screen(user_name):
 	print("Welcome back! %s" % user_name)
-	return input("[1] Calculate a Car loan\n[2] Calculate a Loan\n[3] Update your profile\n[4] To Quite BudgetPAL\nEnter Your Answer: ")
+	return input("[1] View current profile\n[2] Calculate a Loan\n[3] Update your profile\n[4] To Quite BudgetPAL\nEnter Your Answer: ")
 
 def last_screen(user_name):
 	print("Have a nice day %s" % user_name)
@@ -31,6 +31,31 @@ def display_loan(playment_per_month,num_months):
 
 def update_user_info_income():
 	cash_in_hand = input("How much money you have on you?: ")
-	checking_account = input("What is the rounting number to your checking account: ")
-	saving_account = input("What is the rounting number to your saving account: ")
+	name_of_bank = input("what is the name of your bank: ")
+	checking_account = input("What is the routing number to your checking account: ")
+	saving_account = input("What is the routing number to your saving account: ")
+	return(cash_in_hand,name_of_bank,checking_account,saving_account)
 
+def update_user_info_expense():
+	print("This is the expenses portion")
+	print("Please enter zero if the field does not appeal to you")
+	credit_card_dues = input("how much is your monthly credit card payments: ")
+	car_loan_dues = input("how much is your monthly car loan payments: ")
+	mortgage_loan_dues = input("How much is your monthly mortgage payment: ")
+	rent = input("How much you pay for rent: ")
+	student_loan = input("how much is your student loan payments: ")
+	business_loan = input("how much is your business loan payments: ")
+	return(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan)
+
+def display_current_income_info(cash_in_hand,checking_account,saving_account):
+	print("Current cash on hand: ${}".format(cash_in_hand))
+	print("Checking routing number is set to: {}".format(checking_account))
+	print("Saving routing number is set to: {}".format(saving_account))
+
+def display_current_expense_info(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan):
+	print("Credit card monthly payments is set to: ${}".format(credit_card_dues))
+	print("Car loan monthly payments is set to: ${}".format(car_loan_dues))
+	print("Mortgage monthly payments is set to: ${}".format(mortgage_loan_dues))
+	print("Rent is set to: ${}".format(rent))
+	print("Student monthly payments is set to: ${}".format(student_loan))
+	print("Business monthly payments is set to: ${}".format(business_loan))
