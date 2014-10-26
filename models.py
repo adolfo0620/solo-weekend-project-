@@ -58,3 +58,34 @@ class User:
 	def get_balance(self):
 		# return balance
 		pass
+
+class Budget:
+
+	def __init__(self,credit_score):
+		self.apr = 0.0
+		self.two_year = 24
+		self.three_year = 36
+		self.five_year = 48
+
+		if(eval(credit_score)>=740):
+			self.apr = 0.04
+		elif(eval(credit_score)>=700):
+			self.apr = 0.07
+		elif(eval(credit_score)>=660):
+			self.apr = 0.1
+		elif(eval(credit_score)>=580):
+			self.apr = 0.15
+		elif(eval(credit_score)<580):
+			self.apr = 0.20
+	
+	def calculate_loan(self, loanAmount, interestRate, numberMonths):
+		interestRate = interestRate/12
+		round_bracket = pow((1+interestRate),numberMonths)
+		first_bracket = interestRate * pow((1+interestRate),numberMonths)
+		second_bracket = pow((1 + interestRate ),numberMonths) - 1
+		answer = loanAmount * first_bracket / second_bracket
+		return "{:.2f}".format(answer)
+
+	
+	def calculate_car_loan(self):
+		pass
