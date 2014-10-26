@@ -17,7 +17,7 @@ def returning_user_screen():
 	return input("Please enter your screen name: ")
 
 def main_screen(user_name):
-	print("Welcome back! %s" % user_name)
+	print("Welcome! %s" % user_name)
 	return input("[1] View current profile\n[2] Calculate a Loan\n[3] Update your profile\n[4] To Quite BudgetPAL\nEnter Your Answer: ")
 
 def last_screen(user_name):
@@ -47,8 +47,9 @@ def update_user_info_expense():
 	business_loan = input("how much is your business loan payments: ")
 	return(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan)
 
-def display_current_income_info(cash_in_hand,checking_account,saving_account):
+def display_current_income_info(cash_in_hand,bank_name,checking_account,saving_account):
 	print("Current cash on hand: ${}".format(cash_in_hand))
+	print("Current bank is:{}".format(bank_name))
 	print("Checking routing number is set to: {}".format(checking_account))
 	print("Saving routing number is set to: {}".format(saving_account))
 

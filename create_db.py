@@ -13,7 +13,6 @@ def create_users_table():
 		'last_name' VARCHAR
 		'email' VARCHAR,
 		'updated_at' Date,
-		'wire_number' VARCHAR,
 		'credit_score' VARCHAR,
 		UNIQUE(screen_name),
 		PRIMARY KEY ('id'))""")
@@ -28,6 +27,7 @@ def create_incomes_table():
 	c.execute(""" CREATE TABLE 'Incomes'(
 		'id' INTEGER,
 		'cash_in_hand' INTEGER,
+		'bank_name' VARCHAR,
 		'checking_account' VARCHAR,
 		'saving_account' VARCHAR,
 		'user_id' INTEGER,
