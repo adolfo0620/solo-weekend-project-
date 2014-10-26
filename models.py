@@ -18,13 +18,53 @@ class User:
 		self.credit_score = credit_score
 		self.user_id = 0
 
-	# connects to db and updates income
-	def update_incomes(self):
-		pass
+	# connects to db and creates a income row for new user
+	def create_incomes_for_new_user(self,cash_in_hand,checking_account,saving_account):
+		conn = sqlite3.connect(defaultdb)
+		c = conn.cursor()
+		# insert wouldnt work beacuase rhis culom doesnt exits need to create a bank row  when user is created and instead of insert is to be update 
+		statement = "INSERT INTO Incomes(cash_in_hand,checking_account,saving_account,user_id) VALUES(?,?,?,?);"
+		c.execute(statement,(cash_in_hand,checking_account,saving_account,self.user_id,))
+		conn.commit()
+		c.close()
 
-	#connects to db and updates expenses
-	def update_expenses(self):
-		pass
+	def fetch_incomes_data(self):
+		conn = sqlite3.connect(defaultdb)
+		c =conn.cursor()
+		statement = "SELECT * FROM Incomes  WHERE Incomes.user_id = (?)"
+		c.execute(statement,(self.user_id,))
+		income = c.fetchall()[0]
+		cash_in_hand = income[1]
+		checking_account = income[2]
+		saving_account = income[3]
+		conn.commit()
+		c.close()
+		return(cash_in_hand,checking_account,saving_account)
+
+	#connects to db and creates a expense row for new new user
+	def create_expenses_for_new_user(self,credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan):
+		conn = sqlite3.connect(defaultdb)
+		c = conn.cursor()
+		statement = "INSERT INTO Expenses(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan,user_id) VALUES(?,?,?,?,?,?,?);"
+		c.execute(statement,(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan,self.user_id))
+		conn.commit()
+		c.close()
+
+	def fetch_expenses_data(self):
+		conn = sqlite3.connect(defaultdb)
+		c = conn.cursor()
+		statement ="SELECT * FROM Expenses Where Expenses.user_id = (?)"
+		c.execute(statement,(self.user_id,))
+		expenses = c.fetchall()[0]
+		credit_card_dues = expenses[1]
+		car_loan_dues = expenses[2]
+		mortgage_loan_dues = expenses[3]
+		rent = expenses[4]
+		student_loan = expenses[5]
+		business_loan = expenses[6]
+		conn.commit()
+		c.close()
+		return(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan)
 
 	#connects to db and updates user info
 	def update_user(self):
@@ -44,6 +84,7 @@ class User:
 		c = conn.cursor()
 		statement = "SELECT first_name,last_name,credit_score FROM Users WHERE Users.screen_name=(?)"
 		c.execute(statement,(screen_name,))
+		self.screen_name = screen_name
 		user_info = c.fetchall()[0]
 		self.first_name = user_info[0]
 		self.last_name = user_info[1]
@@ -51,9 +92,13 @@ class User:
 		conn.commit()
 		c.close()
 
-	# gets score
-	def get_score(self):
-		pass
+	def fetch_user_id(self):
+		conn = sqlite3.connect(defaultdb)
+		c = conn.cursor()
+		statement = "SELECT id FROM Users Where Users.screen_name = (?)"
+		c.execute(statement,(self.screen_name,))
+		self.user_id = c.fetchone()[0]
+
 
 	def get_balance(self):
 		# return balance
@@ -86,6 +131,3 @@ class Budget:
 		answer = loanAmount * first_bracket / second_bracket
 		return "{:.2f}".format(answer)
 
-	
-	def calculate_car_loan(self):
-		pass
