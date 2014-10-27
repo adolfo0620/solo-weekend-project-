@@ -44,5 +44,12 @@ while in_use == True:
 		(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan)=views.update_user_info_expense()
 		current_user.update_expenses(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan)
 	elif(eval(reply)==4):
+		sum_lost = budget.sum_expenses(current_user.user_id)
+		sum_income = budget.sum_income(current_user.cash_in_hand,current_user.bank_name,current_user.saving_account,current_user.checking_account)
+		list_sum = [sum_income,sum_lost]
+		# empty array is there because i want to build to do muli months
+		budget.plot_diff("money have","money spent",list_sum,[])
+		views.clear_screen()		
+	elif(eval(reply)==5):
 		in_use = False
 views.last_screen(current_user.first_name)

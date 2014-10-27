@@ -49,13 +49,13 @@ class User:
 		statement = "SELECT * FROM Incomes  WHERE Incomes.user_id = (?)"
 		c.execute(statement,(self.user_id,))
 		income = c.fetchall()[0]
-		cash_in_hand = income[1]
-		checking_account = income[3]
-		saving_account = income[4]
+		self.cash_in_hand = income[1]
+		self.checking_account = income[3]
+		self.saving_account = income[4]
 		self.bank_name = income[2]
 		conn.commit()
 		c.close()
-		return(cash_in_hand,self.bank_name,checking_account,saving_account)
+		return(self.cash_in_hand,self.bank_name,self.checking_account,self.saving_account)
 
 	#connects to db and creates a expense row for new new user
 	def create_expenses_for_new_user(self):
