@@ -172,7 +172,6 @@ class Budget:
 
 	# to sum all expenses and income
 	def sum_expenses(self,user_id):
-	# “A Jedi uses the Force for knowledge and defense, never for attack.”
 		conn = sqlite3.connect(defaultdb)
 		c = conn.cursor()
 		statement ="SELECT * From Expenses WHERE Expenses.user_id=(?)"
