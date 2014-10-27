@@ -57,15 +57,15 @@ def update_user_info_expense():
 
 def display_current_income_info(cash_in_hand,bank_name,checking_account,saving_account):
 	clear_screen()
-	print("Current cash on hand: ${}".format(cash_in_hand))
+	print("Current cash on hand: ${:.2f}".format(cash_in_hand))
 	print("Current bank is:{}".format(bank_name))
 	print("Checking routing number is set to: {}".format(checking_account))
 	print("Saving routing number is set to: {}".format(saving_account))
 
 def display_current_expense_info(credit_card_dues,car_loan_dues,mortgage_loan_dues,rent,student_loan,business_loan):
-	print("Credit card monthly payments is set to: ${}".format(credit_card_dues))
-	print("Car loan monthly payments is set to: ${}".format(car_loan_dues))
-	print("Mortgage monthly payments is set to: ${}".format(mortgage_loan_dues))
-	print("Rent is set to: ${}".format(rent))
-	print("Student monthly payments is set to: ${}".format(student_loan))
-	print("Business monthly payments is set to: ${}".format(business_loan))
+	print("Credit card monthly payments is set to: ${:.2f}".format(credit_card_dues))
+	print("Car loan monthly payments is set to: ${:.2f}".format(car_loan_dues))
+	print("Mortgage monthly payments is set to: ${:.2f}".format(mortgage_loan_dues))
+	print("Rent is set to: ${:.2f}".format(rent))
+	print("Student monthly payments is set to: ${:.2f}".format(student_loan))
+	print("Business monthly payments is set to: ${:.2f}".format(business_loan))

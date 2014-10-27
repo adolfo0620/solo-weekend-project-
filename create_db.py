@@ -44,12 +44,12 @@ def create_expenses_table():
 	# might have to change this to floats
 	c.execute(""" CREATE TABLE 'Expenses'(
 		'id' INTEGER,
-		'credit_card_dues' INTEGER,
-		'car_loan_dues' INTEGER,
-		'mortgage_loan_dues' INTEGER,
-		'rent' INTEGER,
-		'student_loan' INTEGER,
-		'business_loan' INTEGER,
+		'credit_card_dues' REAL,
+		'car_loan_dues' REAL,
+		'mortgage_loan_dues' REAL,
+		'rent' REAL,
+		'student_loan' REAL,
+		'business_loan' REAL,
 		'user_id' INTEGER,
 		PRIMARY KEY ('id'),
 		FOREIGN KEY (user_id) REFERENCES Users(id))""")
@@ -68,7 +68,7 @@ def create_log_table():
 		'user_id' INTEGER,
 		PRIMARY KEY ('id'),
 		FOREIGN KEY (user_id) REFERENCES Users(id))""")
-	}
+	
 
 #create the tables Users, Incomes, Expenses
 create_users_table()
@@ -90,13 +90,14 @@ c.close()
 
 
 cash_in_hand = 50
-checking_account = "5456"
-saving_account = "6566"
+checking_account = "4444"
+saving_account = "3333"
 user_id = 1
+bank_name ="fastcash"
 conn = sqlite3.connect(defaultdb)
 c = conn.cursor()
-statement = "INSERT INTO Incomes(cash_in_hand,checking_account,saving_account,user_id) VALUES(?,?,?,?);"
-c.execute(statement,(cash_in_hand,checking_account,saving_account,user_id,))
+statement = "INSERT INTO Incomes(cash_in_hand,bank_name,checking_account,saving_account,user_id) VALUES(?,?,?,?,?);"
+c.execute(statement,(cash_in_hand,bank_name,checking_account,saving_account,user_id,))
 conn.commit()
 c.close()
 
