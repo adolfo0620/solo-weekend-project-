@@ -55,10 +55,20 @@ def create_expenses_table():
 		FOREIGN KEY (user_id) REFERENCES Users(id))""")
 	conn.commit()
 	c.close()
+
 def create_log_table():
 	conn = sqlite3.connect(defaultdb)
 	c = conn.cursor()
 	c.execute("DROP TABLE IF EXISTS 'Logs';")
+	c.execute(""" CREATE Table 'Logs'(
+		'id' INTEGER,
+		'green_total' INTEGER,
+		'red_total' INTEGER,
+		'month' TEXT,
+		'user_id' INTEGER,
+		PRIMARY KEY ('id'),
+		FOREIGN KEY (user_id) REFERENCES Users(id))""")
+	}
 
 #create the tables Users, Incomes, Expenses
 create_users_table()
