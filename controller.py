@@ -7,7 +7,7 @@ while(not_user):
 	answer = views.welcome_screen()
 	if(answer.isalpha()):
 		views.error_screen()
-		# doesnt work if user want to break
+		# doesn't work if user want to break
 		answer = views.welcome_screen()
 	if (eval(answer) == 1 ):
 		screen_name = views.returning_user_screen()
@@ -19,10 +19,7 @@ while(not_user):
 		current_user.set_user_info(screen_name,first_name,last_name,credit_score)
 		current_user.create_user_in_db()
 		not_user = False
-	
-
-
-
+# new user gets a new row for incomes and expenses
 current_user.fetch_user_id()
 if(eval(answer)==2):
 	current_user.create_incomes_for_new_user()
@@ -61,6 +58,7 @@ while in_use == True:
 		views.clear_screen()		
 	elif(eval(reply)==5):
 		in_use = False
+	# most be a better way of doing this
 	elif(eval(reply)>5 or eval(reply)==0):
 		views.error_screen()
 views.last_screen(current_user.first_name)

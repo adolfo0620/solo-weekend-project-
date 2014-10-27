@@ -3,7 +3,7 @@ def clear_screen():
 	print (Terminal().clear)
 
 def welcome_screen():
-	print("Welcome to You'r Budget Friend ")
+	print("Welcome to Your Budget Friend ")
 	return raw_input("Are you a new user or a returning user\n[1] I am a returning user\n[2] I am a new user\nEnter 1 or 2:  ")
 
 def error_screen():
