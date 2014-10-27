@@ -132,11 +132,6 @@ class User:
 		c.execute(statement,(self.screen_name,))
 		self.user_id = c.fetchone()[0]
 
-
-	def get_balance(self):
-		# return balance
-		pass
-
 class Budget:
 
 	def __init__(self,credit_score):
