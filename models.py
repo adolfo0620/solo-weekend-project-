@@ -14,7 +14,7 @@ class User:
 		self.credit_score = 0
 		self.user_id = 0
 		self.bank_name = ""
-		#might delete these
+		# need this 
 		self.cash_in_hand = 0
 		self.checking_account =""
 		self.saving_account =""
@@ -152,6 +152,7 @@ class Budget:
 			self.apr = 0.20
 	
 	def calculate_loan(self, loanAmount, interestRate, numberMonths):
+		# might adjust interest based on term of loan
 		interestRate = interestRate/12
 		round_bracket = pow((1+interestRate),numberMonths)
 		first_bracket = interestRate * pow((1+interestRate),numberMonths)
@@ -171,6 +172,7 @@ class Budget:
 
 	# to sum all expenses and income
 	def sum_expenses(self,user_id):
+	# “A Jedi uses the Force for knowledge and defense, never for attack.”
 		conn = sqlite3.connect(defaultdb)
 		c = conn.cursor()
 		statement ="SELECT * From Expenses WHERE Expenses.user_id=(?)"
